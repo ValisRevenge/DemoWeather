@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaK-5V-3Gr">
+                                <rect key="frame" x="90" y="330" width="195" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="MJ0-aw-kmC"/>
+                                    <constraint firstAttribute="width" constant="195" id="oIL-9E-bP1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <color key="textColor" red="0.2170781493" green="0.64446169139999998" blue="0.93125909569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="snow" translatesAutoresizingMaskIntoConstraints="NO" id="poH-9M-767">
+                                <rect key="frame" x="113" y="226.5" width="148" height="94"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="94" id="HGy-1S-mur"/>
+                                    <constraint firstAttribute="width" constant="148" id="f6L-J0-8A8"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="poH-9M-767" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2nX-ib-9QY"/>
+                            <constraint firstItem="IaK-5V-3Gr" firstAttribute="centerX" secondItem="poH-9M-767" secondAttribute="centerX" id="Gqu-0b-hsR"/>
+                            <constraint firstItem="poH-9M-767" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-70" id="vsw-Fq-9GG"/>
+                            <constraint firstItem="IaK-5V-3Gr" firstAttribute="top" secondItem="poH-9M-767" secondAttribute="bottom" constant="9.5" id="zcT-qR-g8h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="snow" width="48" height="48"/>
+    </resources>
+</document>
