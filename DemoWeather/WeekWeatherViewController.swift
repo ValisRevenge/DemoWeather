@@ -20,6 +20,8 @@ class WeekWeatherViewController: UIViewController, UITableViewDataSource, UITabl
     var temperatureArray:[Double] = []
     
     var date = Date()
+    
+    var city:String = ""
 
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
@@ -33,6 +35,7 @@ class WeekWeatherViewController: UIViewController, UITableViewDataSource, UITabl
         
         self.weatherTable.register(UINib(nibName: "WeatherDayCell", bundle: nil), forCellReuseIdentifier: "dayCell")
 
+        navigationTitle.title = city
         
         list = forecastDictionary?["list"] as? [[String:Any]]
         if let _ = list?.count {
@@ -96,11 +99,11 @@ class WeekWeatherViewController: UIViewController, UITableViewDataSource, UITabl
                 let tempIndex = temperatureArray[row...row+6]
                 cell.temperatureLabel.text = String(tempIndex.max()!) + "'C"
                 // get day
-                var index = row/6 + Calendar.current.firstWeekday
+                var index = row/6 + Calendar.current.firstWeekday + 1
                 if index > 6 {
                     index = index - 7
                 }
-                print(Calendar.current.weekdaySymbols)
+                //print(Calendar.current.weekdaySymbols)
                 cell.dayNameLabel.text = Calendar.current.weekdaySymbols[index]
             }
             

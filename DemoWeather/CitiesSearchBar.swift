@@ -47,22 +47,15 @@ class CitiesSearchBar: UISearchBar, UISearchBarDelegate {
     //dictionary contains 200.000 + rows!
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
-        var citiesList:[String] = []
-        for item in dictionary {
-            citiesList.append(item["name"] as! String)
-            if item["name"] as! String == searchText {
-                closure(searchText)
-                return
-            }
-        }
-        citiesList.sort()
-        if let path = Bundle.main.url(forResource: "sorted_cities", withExtension: "txt") {
-            do {
-                for i in 10..<citiesList.count {
-                    try (citiesList[i] + "\n").write(to: path, atomically: false, encoding: .utf8)
-                }
-            } catch {print(error.localizedDescription)}
-        }
+//        var citiesList:[String] = []
+//        for item in dictionary {
+//            citiesList.append(item["name"] as! String)
+//            if item["name"] as! String == searchText {
+        closure(searchText)
+//                return
+//            }
+//        }
+  //      citiesList.sort()
     }
 
 }

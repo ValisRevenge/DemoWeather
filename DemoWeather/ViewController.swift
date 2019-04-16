@@ -138,6 +138,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let dc = segue.destination as! UINavigationController
             let vc = dc.topViewController! as! WeekWeatherViewController
             vc.forecastDictionary = forecastDictionary
+            vc.city = cityLabel.text ?? ""
         }
     }
 
