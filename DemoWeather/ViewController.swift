@@ -11,10 +11,7 @@ import Alamofire
 import CoreLocation
 
 //
-class ViewController: UIViewController, CLLocationManagerDelegate {
-    
-    
-    @IBOutlet weak var searchBar: CitiesSearchBar!
+class ViewController: UIViewController {
     
     @IBOutlet weak var weatherPictureBox: UIImageView!
     
@@ -62,9 +59,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-        
-        searchBar.closure = {city in self.city = city}
-    }
+        }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -117,6 +112,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         windLabel.text = "wind: " +  String((wind["speed"] as? Double ?? 0)) + " m/s, deg: " + String(wind["deg"] as? Double ?? 0)
     }
     
+
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "forecastSegue" {
+            let dc = segue.destination as! UINavigationController
+            let vc = dc.topViewController! as! WeekWeatherViewController
+            vc.forecastDictionary = forecastDictionary
+            vc.city = cityLabel.text ?? ""
+        }
+    }
+
+}
+
+extension ViewController: CLLocationManagerDelegate, UISearchBarDelegate {
+    
+    //Mark: - CLLocationManagerDelegate
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
@@ -128,19 +140,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = manager.location?.coordinate else {return}
-        self.location = manager.location
-        //print(location)
+        self.location = manager.location ?? nil
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "forecastSegue" {
-            let dc = segue.destination as! UINavigationController
-            let vc = dc.topViewController! as! WeekWeatherViewController
-            vc.forecastDictionary = forecastDictionary
-            vc.city = cityLabel.text ?? ""
-        }
-    }
-
 }
 

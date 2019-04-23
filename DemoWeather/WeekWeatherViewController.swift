@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class WeekWeatherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class WeekWeatherViewController: UIViewController {
 
     var forecastDictionary:[String:Any]?
     
@@ -31,7 +31,7 @@ class WeekWeatherViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
         
         weatherTable.dataSource = self
-        weatherTable.delegate = self
+        //weatherTable.delegate = self
         
         self.weatherTable.register(UINib(nibName: "WeatherDayCell", bundle: nil), forCellReuseIdentifier: "dayCell")
 
@@ -62,14 +62,10 @@ class WeekWeatherViewController: UIViewController, UITableViewDataSource, UITabl
         self.dismiss(animated: true, completion: nil)
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableSectionsCount
-    }
+}
+extension WeekWeatherViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 72.0
-    }
-    
+    // Mark: - UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row * 6
         if let list = self.list {
@@ -78,22 +74,22 @@ class WeekWeatherViewController: UIViewController, UITableViewDataSource, UITabl
                 let imageType = weather[0]["main"] as! String
                 switch imageType {
                 case "Clear":
-                    cell.weatherImageBox.image = #imageLiteral(resourceName: "bright_sunny")
+                    cell.weatherImageBox.image =  #imageLiteral(resourceName: "bright_sunny")
                     break
                 case "Snow":
-                    cell.weatherImageBox.image = #imageLiteral(resourceName: "snow")
+                    cell.weatherImageBox.image =  #imageLiteral(resourceName: "snow")
                     break
                 case "Clouds":
-                    cell.weatherImageBox.image = #imageLiteral(resourceName: "cloudy")
+                    cell.weatherImageBox.image =  #imageLiteral(resourceName: "cloudy")
                     break
                 case "Mist":
-                    cell.weatherImageBox.image = #imageLiteral(resourceName: "mist")
+                    cell.weatherImageBox.image =  #imageLiteral(resourceName: "mist")
                     break
                 case "Rain":
-                    cell.weatherImageBox.image = #imageLiteral(resourceName: "rain")
+                    cell.weatherImageBox.image =  #imageLiteral(resourceName: "rain")
                     break
                 default:
-                    cell.weatherImageBox.image = #imageLiteral(resourceName: "cloudy")
+                    cell.weatherImageBox.image =  #imageLiteral(resourceName: "cloudy")
                     break
                 }
                 let tempIndex = temperatureArray[row...row+6]
@@ -111,4 +107,13 @@ class WeekWeatherViewController: UIViewController, UITableViewDataSource, UITabl
         }
         return UITableViewCell(style: .default, reuseIdentifier: nil)
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableSectionsCount
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72.0
+    }
+    
 }

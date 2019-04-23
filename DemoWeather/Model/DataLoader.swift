@@ -10,7 +10,9 @@ import Foundation
 import CoreLocation
 import Alamofire
 
-class DataLoader: NSObject {
+class DataLoader  {
+    
+    static let server = DataLoader()
     
     let currentWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=metric&id=524901&APPID=b5ba9264d3ff44e5c0097c7aeda465a7"
     private let key = "b5ba9264d3ff44e5c0097c7aeda465a7"
@@ -23,7 +25,7 @@ class DataLoader: NSObject {
         }
     
     func getWeatherByCity(city: String, completed:@escaping (_ dictionary:[String:Any])->Void) {
-        var url = currentWeatherUrl.replacingOccurrences(of: "lat={lat}&lon={lon}", with: "q="+city)
+        let url = currentWeatherUrl.replacingOccurrences(of: "lat={lat}&lon={lon}", with: "q="+city)
         downloadInfo(url: url, completed: completed)
     }
     
@@ -35,7 +37,7 @@ class DataLoader: NSObject {
     }
     
     func getForecastByCity(city:String, completed:@escaping (_ dictionary:[String:Any])->Void) {
-        var url = forecastUrl.replacingOccurrences(of: "lat={lat}&lon={lon}", with: "q="+city)
+        let url = forecastUrl.replacingOccurrences(of: "lat={lat}&lon={lon}", with: "q="+city)
         downloadInfo(url: url, completed: completed)
     }
     

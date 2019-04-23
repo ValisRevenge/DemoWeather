@@ -17,9 +17,7 @@
 		5227EAAE2260C64700CE9826 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5227EAAD2260C64700CE9826 /* Assets.xcassets */; };
 		5227EAB12260C64700CE9826 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5227EAAF2260C64700CE9826 /* LaunchScreen.storyboard */; };
 		5227EAB92260D08E00CE9826 /* city_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 5227EAB82260D08E00CE9826 /* city_list.json */; };
-		5233F08322638E1800F8D621 /* CitiesSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5233F08222638E1800F8D621 /* CitiesSearchBar.swift */; };
 		5233F0862263B7EE00F8D621 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5233F0852263B7EE00F8D621 /* LaunchScreenView.swift */; };
-		52E6A4B52265160C00D7CE6F /* file.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52E6A4B42265160C00D7CE6F /* file.txt */; };
 		7B6A2337B4ECDD6EB1745254 /* Pods_DemoWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E57FD025CFF3816DAC155CB /* Pods_DemoWeather.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +34,7 @@
 		5227EAB02260C64700CE9826 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5227EAB22260C64700CE9826 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5227EAB82260D08E00CE9826 /* city_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city_list.json; sourceTree = "<group>"; };
-		5233F08222638E1800F8D621 /* CitiesSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesSearchBar.swift; sourceTree = "<group>"; };
 		5233F0852263B7EE00F8D621 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
-		52E6A4B42265160C00D7CE6F /* file.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = file.txt; sourceTree = SOURCE_ROOT; };
 		77B4FE09614982C529442A57 /* Pods-DemoWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoWeather/Pods-DemoWeather.release.xcconfig"; sourceTree = "<group>"; };
 		7E57FD025CFF3816DAC155CB /* Pods_DemoWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFADB897B81F761832C810B0 /* Pods-DemoWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoWeather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoWeather/Pods-DemoWeather.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,9 +94,7 @@
 				5227EAA62260C64700CE9826 /* AppDelegate.swift */,
 				5227EAA82260C64700CE9826 /* ViewController.swift */,
 				5227EAAA2260C64700CE9826 /* Main.storyboard */,
-				5233F08222638E1800F8D621 /* CitiesSearchBar.swift */,
 				5227EAB82260D08E00CE9826 /* city_list.json */,
-				52E6A4B42265160C00D7CE6F /* file.txt */,
 				5233F0852263B7EE00F8D621 /* LaunchScreenView.swift */,
 				5210BEB822610E6000EABA5D /* WeekWeatherViewController.swift */,
 				5233F0842263B7C100F8D621 /* Model */,
@@ -194,7 +188,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5227EAB12260C64700CE9826 /* LaunchScreen.storyboard in Resources */,
-				52E6A4B52265160C00D7CE6F /* file.txt in Resources */,
 				5210BEB622610BB200EABA5D /* WeatherDayCell.xib in Resources */,
 				5227EAB92260D08E00CE9826 /* city_list.json in Resources */,
 				5227EAAE2260C64700CE9826 /* Assets.xcassets in Resources */,
@@ -248,7 +241,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5233F08322638E1800F8D621 /* CitiesSearchBar.swift in Sources */,
 				5209C95D22627975008E1FB4 /* DataLoader.swift in Sources */,
 				5233F0862263B7EE00F8D621 /* LaunchScreenView.swift in Sources */,
 				5227EAA92260C64700CE9826 /* ViewController.swift in Sources */,

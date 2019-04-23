@@ -66,7 +66,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="London" translatesAutoresizingMaskIntoConstraints="NO" id="T3N-ro-asn" customClass="CitiesSearchBar" customModule="DemoWeather" customModuleProvider="target">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="London" translatesAutoresizingMaskIntoConstraints="NO" id="T3N-ro-asn">
                                 <rect key="frame" x="0.0" y="36" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" name="selectedControlColor" catalog="System" colorSpace="catalog"/>
@@ -80,7 +80,6 @@
                         <outlet property="cityLabel" destination="GNo-wl-U1A" id="sRg-61-LfG"/>
                         <outlet property="humidityLabel" destination="JVe-oU-MbI" id="IE3-25-eNO"/>
                         <outlet property="pressureLabel" destination="dTL-3t-8wc" id="8lO-A8-1cv"/>
-                        <outlet property="searchBar" destination="T3N-ro-asn" id="PXC-zC-zCd"/>
                         <outlet property="temperatureLabel" destination="nhW-wV-wDh" id="5Xy-lE-38h"/>
                         <outlet property="weatherPictureBox" destination="W7c-1u-7bs" id="GvB-Id-DuJ"/>
                         <outlet property="windLabel" destination="u8P-SY-jv6" id="zKh-UA-R7T"/>
