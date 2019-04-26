@@ -78,6 +78,7 @@
                     </view>
                     <connections>
                         <outlet property="cityLabel" destination="GNo-wl-U1A" id="sRg-61-LfG"/>
+                        <outlet property="citySearchBar" destination="T3N-ro-asn" id="ZpL-xm-eHW"/>
                         <outlet property="humidityLabel" destination="JVe-oU-MbI" id="IE3-25-eNO"/>
                         <outlet property="pressureLabel" destination="dTL-3t-8wc" id="8lO-A8-1cv"/>
                         <outlet property="temperatureLabel" destination="nhW-wV-wDh" id="5Xy-lE-38h"/>

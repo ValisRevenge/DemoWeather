@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var cityLabel: UILabel!
     
+    @IBOutlet weak var citySearchBar: UISearchBar!
     
     var locationManager: CLLocationManager!
     
@@ -46,7 +47,7 @@ class ViewController: UIViewController {
         }
     }
     
-    var city:String = "Dnipro" {
+    var city:String = "Dnipropropetrovsk" {
         didSet {
             loader.getWeatherByCity(city: city, completed: downloadWeather)
             loader.getForecastByCity(city: city, completed: downloadForecast)
@@ -112,7 +113,9 @@ class ViewController: UIViewController {
         windLabel.text = "wind: " +  String((wind["speed"] as? Double ?? 0)) + " m/s, deg: " + String(wind["deg"] as? Double ?? 0)
     }
     
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        citySearchBar.endEditing(true)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "forecastSegue" {
@@ -142,5 +145,15 @@ extension ViewController: CLLocationManagerDelegate, UISearchBarDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.location = manager.location ?? nil
     }
+    
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        self.city = searchBar.text ?? ""
+//    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.city = searchBar.text ?? ""
+
+    }
+    
 }
 
