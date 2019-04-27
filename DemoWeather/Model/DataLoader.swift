@@ -49,7 +49,7 @@ class DataLoader  {
                 guard let value = responce.result.value as? [String:Any] else {return}
                 let res: Weather = try! JSONDecoder().decode(Weather.self, from: responce.data!)
                 completed(value)
-                print(responce.result)
+                //print(responce.data!)
                 break
             default:
                 break

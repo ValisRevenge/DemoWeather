@@ -12,8 +12,8 @@ import CoreLocation
 struct Weather: Decodable {
     var date:Date?
     var coordinate: CLLocation?
-    var type: String
-    var description: String
+    var type: String = ""
+    var description: String = ""
     var temp: Double
     var pressure: Double
     var humidity: Double
@@ -27,7 +27,7 @@ struct Weather: Decodable {
     var sunset: Int
     var nameCity: String
     
-    enum CodingKeys: String, CodingKey {
+   private enum CodingKeys: String, CodingKey {
         case coord
         case main
         case visibility
@@ -39,32 +39,20 @@ struct Weather: Decodable {
         case dt
     }
     
-    enum CoordCodingKeys: String, CodingKey {
-        case lon
-        case lat
-    }
-    
-    enum WeatherCodingKeys: String, CodingKey {
-        case description
-        case main
-        case icon
-    }
-    
-    enum MainCodingKeys: String, CodingKey {
-        case temp
-        case pressure
-        case humidity
-    }
-    
-    enum SysCodingKeys: String, CodingKey {
-        case country
-        case sunrise
-        case sunset
-    }
-    
-    enum WindCodingKeys: String, CodingKey {
-        case speed
-        case deg
+    private enum NestedCodingKeys: String, CodingKey {
+        case lon = "lon"
+        case lat = "lat"
+        case description = "description"
+        case main = "main"
+        case icon = "icon"
+        case temp = "temp"
+        case pressure = "pressure"
+        case humidity = "humidity"
+        case country = "country"
+        case sunrise = "sunrise"
+        case sunset = "sunset"
+        case speed = "speed"
+        case deg = "deg"
     }
     
 //    init(dictionary:[String:Any]) {
@@ -91,28 +79,31 @@ struct Weather: Decodable {
         let dt = try container.decode(Double.self, forKey: .dt)
         date = Date(timeIntervalSinceReferenceDate: dt)
         
-        let coordContainer = try container.nestedContainer(keyedBy: CoordCodingKeys.self, forKey: .coord)
+        let coordContainer = try container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .coord)
         let lat = try coordContainer.decode(Double.self, forKey: .lat)
         let lon = try coordContainer.decode(Double.self, forKey: .lon)
         self.coordinate = CLLocation(latitude: lat, longitude: lon)
         
-        let weatherContainer = try container.nestedContainer(keyedBy: WeatherCodingKeys.self, forKey: .weather)
-        self.type = try weatherContainer.decode(String.self, forKey: .main)
-        self.description = try weatherContainer.decode(String.self, forKey: .description)
-        
-        let mainContainer = try container.nestedContainer(keyedBy: MainCodingKeys.self, forKey: .main)
+        let mainContainer = try container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .main)
         self.temp = try mainContainer.decode(Double.self, forKey: .temp)
         self.pressure = try mainContainer.decode(Double.self, forKey: .pressure)
         self.humidity = try mainContainer.decode(Double.self, forKey: .humidity)
         
-        let sysContainer = try container.nestedContainer(keyedBy: SysCodingKeys.self, forKey: .sys)
+        let sysContainer = try container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .sys)
         self.country = try sysContainer.decode(String.self, forKey: .country)
         self.sunrise = try sysContainer.decode(Int.self, forKey: .sunrise)
         self.sunset = try sysContainer.decode(Int.self, forKey: .sunset)
         
-        let windContainer = try container.nestedContainer(keyedBy: WindCodingKeys.self, forKey: .wind)
+        let windContainer = try container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .wind)
         self.windDeg = try windContainer.decode(Double.self, forKey: .deg)
         self.windSpeed = try windContainer.decode(Double.self, forKey: .speed)
+        
+        var weatherContainer = try container.nestedUnkeyedContainer(forKey: .weather)
+        while !weatherContainer.isAtEnd {
+            let cont = try weatherContainer.nestedContainer(keyedBy: NestedCodingKeys.self)
+            self.type = try cont.decode(String.self, forKey: .main)
+            self.description = try cont.decode(String.self, forKey: .description)
+        }
         
     }
     
