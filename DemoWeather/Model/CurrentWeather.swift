@@ -9,23 +9,25 @@
 import Foundation
 import CoreLocation
 
-struct Weather: Decodable {
+struct CurrentWeather: Decodable {
     var date:Date?
     var coordinate: CLLocation?
     var type: String = ""
     var description: String = ""
-    var temp: Double
-    var pressure: Double
-    var humidity: Double
-    var visibility: Int
+    var temp: Double = 0
+    var pressure: Double = 0
+    var humidity: Double = 0
+    var visibility: Int = 0
     
-    var windSpeed:Double
-    var windDeg:Double
+    var windSpeed:Double = 0
+    var windDeg:Double = 0
     
-    var country: String
-    var sunrise: Int
-    var sunset: Int
-    var nameCity: String
+    var country: String = ""
+    var sunrise: Date?
+    var sunset: Date?
+    var nameCity: String = ""
+    
+    var clouds: Int = 0
     
    private enum CodingKeys: String, CodingKey {
         case coord
@@ -53,6 +55,7 @@ struct Weather: Decodable {
         case sunset = "sunset"
         case speed = "speed"
         case deg = "deg"
+        case all = "all"
     }
     
 //    init(dictionary:[String:Any]) {
@@ -74,30 +77,40 @@ struct Weather: Decodable {
     //unwrape JSON
     init(from decoder:Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.visibility = try container.decode(Int.self, forKey: .visibility)
-        self.nameCity = try container.decode(String.self, forKey: .name)
+        self.visibility = (try? container.decode(Int.self, forKey: .visibility)) ?? 0
+        self.nameCity = (try? container.decode(String.self, forKey: .name)) ?? ""
         let dt = try container.decode(Double.self, forKey: .dt)
-        date = Date(timeIntervalSinceReferenceDate: dt)
+        date = Date(timeIntervalSince1970: dt)
         
-        let coordContainer = try container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .coord)
-        let lat = try coordContainer.decode(Double.self, forKey: .lat)
-        let lon = try coordContainer.decode(Double.self, forKey: .lon)
-        self.coordinate = CLLocation(latitude: lat, longitude: lon)
+        if let coordContainer = try? container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .coord) {
+            let lat = try coordContainer.decode(Double.self, forKey: .lat)
+            let lon = try coordContainer.decode(Double.self, forKey: .lon)
+            self.coordinate = CLLocation(latitude: lat, longitude: lon)
+        }
         
-        let mainContainer = try container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .main)
-        self.temp = try mainContainer.decode(Double.self, forKey: .temp)
-        self.pressure = try mainContainer.decode(Double.self, forKey: .pressure)
-        self.humidity = try mainContainer.decode(Double.self, forKey: .humidity)
+        if let mainContainer = try? container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .main) {
+            self.temp = try mainContainer.decode(Double.self, forKey: .temp)
+            self.pressure = try mainContainer.decode(Double.self, forKey: .pressure)
+            self.humidity = try mainContainer.decode(Double.self, forKey: .humidity)
+        }
         
-        let sysContainer = try container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .sys)
-        self.country = try sysContainer.decode(String.self, forKey: .country)
-        self.sunrise = try sysContainer.decode(Int.self, forKey: .sunrise)
-        self.sunset = try sysContainer.decode(Int.self, forKey: .sunset)
+        if let sysContainer = try? container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .sys) {
+            self.country = (try? sysContainer.decode(String.self, forKey: .country)) ?? ""
+            if let sunrise = try? sysContainer.decode(Double.self, forKey: .sunrise) {
+                self.sunrise = Date(timeIntervalSince1970: sunrise)
+            }
+            if let sunset = try? sysContainer.decode(Double.self, forKey: .sunset) {
+                self.sunset = Date(timeIntervalSince1970: sunset)
+            }
+        }
         
         let windContainer = try container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .wind)
         self.windDeg = try windContainer.decode(Double.self, forKey: .deg)
         self.windSpeed = try windContainer.decode(Double.self, forKey: .speed)
         
+        let cloudsContainer = try container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .clouds)
+        self.clouds = try cloudsContainer.decode(Int.self, forKey: .all)
+        // unwrap array of weather
         var weatherContainer = try container.nestedUnkeyedContainer(forKey: .weather)
         while !weatherContainer.isAtEnd {
             let cont = try weatherContainer.nestedContainer(keyedBy: NestedCodingKeys.self)

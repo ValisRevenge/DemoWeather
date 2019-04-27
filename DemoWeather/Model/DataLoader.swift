@@ -33,12 +33,12 @@ class DataLoader  {
         
         var url:String = forecastUrl.replacingOccurrences(of: "{lat}", with: coordinate.coordinate.latitude.description)
         url = url.replacingOccurrences(of: "{lon}", with: coordinate.coordinate.longitude.description)
-        downloadInfo(url: url, completed: completed)
+        downloadInfo1(url: url, completed: completed)
     }
     
     func getForecastByCity(city:String, completed:@escaping (_ dictionary:[String:Any])->Void) {
         let url = forecastUrl.replacingOccurrences(of: "lat={lat}&lon={lon}", with: "q="+city)
-        downloadInfo(url: url, completed: completed)
+        downloadInfo1(url: url, completed: completed)
     }
     
     private func downloadInfo(url:String, completed:@escaping (_ dictionary:[String:Any])->Void) {
@@ -47,7 +47,23 @@ class DataLoader  {
             switch responce.result {
             case .success:
                 guard let value = responce.result.value as? [String:Any] else {return}
-                let res: Weather = try! JSONDecoder().decode(Weather.self, from: responce.data!)
+               // let res: CurrentWeather = try! JSONDecoder().decode(CurrentWeather.self, from: responce.data!)
+                completed(value)
+                //print(responce.data!)
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    private func downloadInfo1(url:String, completed:@escaping (_ dictionary:[String:Any])->Void) {
+        request(url, method: .get).validate().responseJSON {
+            responce in
+            switch responce.result {
+            case .success:
+                guard let value = responce.result.value as? [String:Any] else {return}
+                let res: ForecastSixDay = try! JSONDecoder().decode(ForecastSixDay.self, from: responce.data!)
                 completed(value)
                 //print(responce.data!)
                 break
