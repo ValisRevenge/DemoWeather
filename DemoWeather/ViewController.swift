@@ -60,6 +60,9 @@ class ViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        
+        self.citySearchBar.delegate = self
+        
         }
 
     override func didReceiveMemoryWarning() {
@@ -146,13 +149,12 @@ extension ViewController: CLLocationManagerDelegate, UISearchBarDelegate {
         self.location = manager.location ?? nil
     }
     
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        self.city = searchBar.text ?? ""
-//    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.city = searchBar.text ?? ""
-
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.city = searchBar.text ?? ""
     }
     
 }

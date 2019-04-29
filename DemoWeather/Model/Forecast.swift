@@ -24,6 +24,14 @@ struct ForecastSixDay: Decodable {
         case city
     }
     
+    private enum NestedCodingKeys: String, CodingKey {
+        case coord = "coord"
+        case lat = "lat"
+        case lon = "lon"
+        case country = "country"
+        case name = "name"
+    }
+    // unwrap JSON
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         forecast = [CurrentWeather]()
@@ -32,7 +40,15 @@ struct ForecastSixDay: Decodable {
             let cont = try currentContainer.decode(CurrentWeather.self)
             forecast!.append(cont)
         }
-        cityName = ""
+        
+        let cityContainer = try container.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .city)
+        self.cityName = try cityContainer.decode(String.self, forKey: .name)
+        self.country = try cityContainer.decode(String.self, forKey: .country)
+        
+        let coordContainer = try cityContainer.nestedContainer(keyedBy: NestedCodingKeys.self, forKey: .coord)
+        let lat = try coordContainer.decode(Double.self, forKey: .lat)
+        let lon = try coordContainer.decode(Double.self, forKey: .lon)
+        self.location = CLLocation(latitude: lat, longitude: lon)
     }
     
 }
