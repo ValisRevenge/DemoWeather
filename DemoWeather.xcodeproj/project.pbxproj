@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		5209C95D22627975008E1FB4 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209C95C22627975008E1FB4 /* DataLoader.swift */; };
 		520ABE4D22745CB1001C20EF /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520ABE4C22745CB1001C20EF /* Forecast.swift */; };
+		520DF9DE228AB15D007BE36C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DF9DD228AB15D007BE36C /* Client.swift */; };
 		520F22BE227225730012A6AB /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F22BD227225730012A6AB /* CurrentWeather.swift */; };
+		52109DC22289E98500D43420 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52109DC12289E98500D43420 /* ServiceError.swift */; };
 		5210BEB522610BB200EABA5D /* WeatherDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5210BEB322610BB200EABA5D /* WeatherDayCell.swift */; };
 		5210BEB622610BB200EABA5D /* WeatherDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5210BEB422610BB200EABA5D /* WeatherDayCell.xib */; };
 		5210BEB922610E6000EABA5D /* WeekWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5210BEB822610E6000EABA5D /* WeekWeatherViewController.swift */; };
@@ -25,7 +27,9 @@
 /* Begin PBXFileReference section */
 		5209C95C22627975008E1FB4 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		520ABE4C22745CB1001C20EF /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		520DF9DD228AB15D007BE36C /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		520F22BD227225730012A6AB /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		52109DC12289E98500D43420 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		5210BEB322610BB200EABA5D /* WeatherDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDayCell.swift; sourceTree = "<group>"; };
 		5210BEB422610BB200EABA5D /* WeatherDayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherDayCell.xib; sourceTree = "<group>"; };
 		5210BEB822610E6000EABA5D /* WeekWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekWeatherViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 				5209C95C22627975008E1FB4 /* DataLoader.swift */,
 				520F22BD227225730012A6AB /* CurrentWeather.swift */,
 				521AAF582276E2A4009FB71A /* SkyImages.swift */,
+				52109DC12289E98500D43420 /* ServiceError.swift */,
+				520DF9DD228AB15D007BE36C /* Client.swift */,
 				520ABE4C22745CB1001C20EF /* Forecast.swift */,
 			);
 			path = Model;
@@ -249,7 +255,9 @@
 				5210BEB922610E6000EABA5D /* WeekWeatherViewController.swift in Sources */,
 				520F22BE227225730012A6AB /* CurrentWeather.swift in Sources */,
 				5210BEB522610BB200EABA5D /* WeatherDayCell.swift in Sources */,
+				52109DC22289E98500D43420 /* ServiceError.swift in Sources */,
 				5227EAA72260C64700CE9826 /* AppDelegate.swift in Sources */,
+				520DF9DE228AB15D007BE36C /* Client.swift in Sources */,
 				521AAF592276E2A4009FB71A /* SkyImages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

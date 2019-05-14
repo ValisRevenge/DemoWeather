@@ -146,7 +146,7 @@ extension ViewController: CLLocationManagerDelegate, UISearchBarDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.location = manager.location ?? nil
+        self.location = manager.location ?? nil 
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -154,7 +154,7 @@ extension ViewController: CLLocationManagerDelegate, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.city = searchBar.text ?? ""
+        searchBarTextDidEndEditing(citySearchBar)
     }
     
 }
