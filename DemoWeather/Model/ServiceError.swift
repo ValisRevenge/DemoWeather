@@ -26,3 +26,14 @@ extension ServiceError: LocalizedError {
         }
     }
 }
+
+extension ServiceError {
+    init(json: [String:Any]) {
+        if let message = json["message"] as? String {
+            self = .custom(message)
+        }
+        else {
+            self = .other
+        }
+    }
+}

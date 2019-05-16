@@ -63,7 +63,7 @@ class DataLoader  {
             switch responce.result {
             case .success:
                 guard let value = responce.result.value as? [String:Any] else {return}
-                let res: ForecastSixDay = try! JSONDecoder().decode(ForecastSixDay.self, from: responce.data!)
+                let res: ForecastSixDayData = try! JSONDecoder().decode(ForecastSixDayData.self, from: responce.data!)
                 completed(value)
                 //print(responce.data!)
                 break

@@ -9,9 +9,9 @@
 import Foundation
 import CoreLocation
 
-struct ForecastSixDay: Decodable {
+struct ForecastSixDayData: Decodable {
     
-    var forecast: [CurrentWeather]?
+    var forecast: [CurrentWeatherData]?
     
     var location: CLLocation?
     
@@ -34,10 +34,10 @@ struct ForecastSixDay: Decodable {
     // unwrap JSON
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        forecast = [CurrentWeather]()
+        forecast = [CurrentWeatherData]()
         var currentContainer = try container.nestedUnkeyedContainer(forKey: .list)
         while !currentContainer.isAtEnd {
-            let cont = try currentContainer.decode(CurrentWeather.self)
+            let cont = try currentContainer.decode(CurrentWeatherData.self)
             forecast!.append(cont)
         }
         

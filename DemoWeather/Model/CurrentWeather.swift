@@ -9,7 +9,8 @@
 import Foundation
 import CoreLocation
 
-struct CurrentWeather: Decodable {
+struct CurrentWeatherData: Decodable {
+    
     var date:Date?
     var coordinate: CLLocation?
     var type: String = ""

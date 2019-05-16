@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Alamofire
+import Reachability
 
 enum RequestMethod: String {
     case get = "GET"
@@ -15,7 +15,7 @@ enum RequestMethod: String {
     case put = "PUT"
 }
 
-final class Client {
+final class WebClient {
     
     private var baseUrl: String
     
@@ -23,8 +23,32 @@ final class Client {
         baseUrl = url;
     }
     
-    func load(path: String, httpMethod: RequestMethod, params: [String:Any], completion: @escaping(Any?, ServiceError) ->()) -> URLSessionDataTask? {
-        return nil
+    func load(path: String, httpMethod: RequestMethod, params: [String:Any], completion: @escaping(Any?, ServiceError?) ->()) -> URLSessionDataTask? {
+        let reach = Reachability()
+        if !reach.isReachable() {
+            completion(nil, .noInternetConnection)
+            return nil
+        }
+        
+        let request = URLRequest(baseUrl: baseUrl, path: path, method: httpMethod, params: params)
+        let task = URLSession.shared.dataTask(with: request) { data, responce, error in
+            var object: Any? = nil
+            if let data = data {
+                object = try? JSONSerialization.data(withJSONObject: data, options: [])
+            }
+            
+            if let httpResponce = responce as? HTTPURLResponse, (200..<300) ~= httpResponce.statusCode {
+                completion(object, nil)
+            }
+            else {
+                let error = (object as? [String:Any]).flatMap(ServiceError.init) ?? ServiceError.other
+                completion(nil, error)
+            }
+            
+        }
+        task.resume()
+        
+        return task
     }
     
 }
@@ -43,6 +67,22 @@ extension URL {
         }
         
         self = components.url!
+    }
+}
+
+extension URLRequest {
+    init(baseUrl: String, path: String, method: RequestMethod, params:[String:Any]) {
+        let url = URL(baseUrl: baseUrl, path: path, params: params, method: method)
+        self.init(url: url)
+        httpMethod = method.rawValue
+        setValue("application/json", forHTTPHeaderField: "Accept")
+        setValue("application/json", forHTTPHeaderField: "Content-Type")
+        switch method {
+        case .post, .put:
+            httpBody = try! JSONSerialization.data(withJSONObject: params, options: [])
+        default:
+            break
+        }
     }
 }
 
