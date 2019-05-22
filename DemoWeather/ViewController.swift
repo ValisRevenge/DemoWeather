@@ -76,17 +76,11 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 self.weatherPictureBox.image = UIImage(skyImages: .cloudy)
                 self.cityLabel.text = self.currentWeather!.nameCity
-                self.humidityLabel.text = String(self.currentWeather!.humidity) + " h"
-                self.pressureLabel.text = String(self.currentWeather!.pressure)
-                self.temperatureLabel.text = String(self.currentWeather!.temp) + "'C"
-                self.windLabel.text = String(self.currentWeather!.windSpeed) + " m/s " + String(self.currentWeather!.windDeg) + " deg"
+                self.humidityLabel.text = "Humidity: " + String(self.currentWeather!.humidity) + " h"
+                self.pressureLabel.text = "Pressure: " + String(self.currentWeather!.pressure)
+                self.temperatureLabel.text = "Temp: " + String(self.currentWeather!.temp) + "'C"
+                self.windLabel.text = "Wind: " + String(self.currentWeather!.windSpeed) + " m/s " + String(self.currentWeather!.windDeg) + " deg"
             }
-//            self.weatherPictureBox.image = UIImage(skyImages: .cloudy)
-//            self.cityLabel.text = currentWeather!.nameCity
-//            self.humidityLabel.text = String(currentWeather!.humidity) + " h"
-//            self.pressureLabel.text = String(currentWeather!.pressure)
-//            self.temperatureLabel.text = String(currentWeather!.temp) + "'C"
-//            self.windLabel.text = String(currentWeather!.windSpeed) + " m/s " + String(currentWeather!.windDeg) + " deg"
         }
     }
     

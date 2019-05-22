@@ -19,6 +19,7 @@ struct CurrentWeatherData: Decodable {
     var pressure: Double = 0
     var humidity: Double = 0
     var visibility: Int = 0
+    var iconPath: String?
     
     var windSpeed:Double = 0
     var windDeg:Double = 0
@@ -58,22 +59,6 @@ struct CurrentWeatherData: Decodable {
         case deg = "deg"
         case all = "all"
     }
-    
-//    init(dictionary:[String:Any]) {
-//        if let point = dictionary["coord"] as? CLLocation {
-//            coordinate = point
-//        }
-//        type = dictionary["type"] as? String ?? ""
-//        description = dictionary["description"] as? String ?? ""
-//        temp = dictionary["temp"] as? Double ?? 0.0
-//        pressure = dictionary["pressure"] as? Double ?? 0.0
-//        humidity = dictionary["humidity"] as? Double ?? 0.0
-//        visibility = dictionary["visibility"] as? Int ?? 0
-//        country = dictionary["country"] as? String ?? ""
-//        sunrise = dictionary["sunrise"] as? Int ?? 0
-//        sunset = dictionary["sunset"] as? Int ?? 0
-//        nameCity = dictionary["name"] as? String ?? ""
-//    }
     
     //unwrape JSON
     init(from decoder:Decoder) throws {
@@ -117,6 +102,7 @@ struct CurrentWeatherData: Decodable {
             let cont = try weatherContainer.nestedContainer(keyedBy: NestedCodingKeys.self)
             self.type = try cont.decode(String.self, forKey: .main)
             self.description = try cont.decode(String.self, forKey: .description)
+            self.iconPath = try cont.decode(String.self, forKey: .icon)
         }
         
     }
