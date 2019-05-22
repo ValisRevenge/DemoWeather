@@ -37,13 +37,17 @@ class ViewController: UIViewController {
     
     var location:CLLocation? {
         didSet {
+            weatherTask?.cancel()
             
+            weatherTask = WeatherService().loadCurrentWeather(location: location!, completion: downloadWeather(weatherData:error:))
         }
     }
     
     var city: String? {
         didSet {
+            weatherTask?.cancel()
             
+            weatherTask = WeatherService().loadCurrentWeather(cityName: city ?? "", completion: downloadWeather(weatherData:error:))
         }
     }
     
@@ -55,24 +59,44 @@ class ViewController: UIViewController {
         locationManager.startUpdatingLocation()
         
         self.citySearchBar.delegate = self
+        
         }
 
-    override func didReceiveMemoryWarning() {
+        override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func downloadWeather(dictionary:Data?, error:ServiceError?) {
+    func downloadWeather(weatherData: CurrentWeatherData?, error:ServiceError?) {
         if let error = error {
             print(error.localizedDescription)
         }
         else {
-            currentWeather = try? JSONDecoder().decode(CurrentWeatherData.self, from: dictionary!)
+            currentWeather = weatherData
+            DispatchQueue.main.async {
+                self.weatherPictureBox.image = UIImage(skyImages: .cloudy)
+                self.cityLabel.text = self.currentWeather!.nameCity
+                self.humidityLabel.text = String(self.currentWeather!.humidity) + " h"
+                self.pressureLabel.text = String(self.currentWeather!.pressure)
+                self.temperatureLabel.text = String(self.currentWeather!.temp) + "'C"
+                self.windLabel.text = String(self.currentWeather!.windSpeed) + " m/s " + String(self.currentWeather!.windDeg) + " deg"
+            }
+//            self.weatherPictureBox.image = UIImage(skyImages: .cloudy)
+//            self.cityLabel.text = currentWeather!.nameCity
+//            self.humidityLabel.text = String(currentWeather!.humidity) + " h"
+//            self.pressureLabel.text = String(currentWeather!.pressure)
+//            self.temperatureLabel.text = String(currentWeather!.temp) + "'C"
+//            self.windLabel.text = String(currentWeather!.windSpeed) + " m/s " + String(currentWeather!.windDeg) + " deg"
         }
     }
     
-    func downloadForecast(dictionary:[String:Any]) {
-        
+    func downloadForecast(forecast:ForecastSixDayData?, error: ServiceError?) {
+        if let error = error {
+            print(error.localizedDescription)
+        }
+        else {
+            weatherForecast = forecast
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,7 +106,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "forecastSegue" {
             let dc = segue.destination as! UINavigationController
-            let vc = dc.topViewController! as! WeekWeatherViewController
+            let vc = dc.topViewController! as! ForecastViewController
         }
     }
 
@@ -114,7 +138,7 @@ extension ViewController: CLLocationManagerDelegate, UISearchBarDelegate {
         searchBarTextDidEndEditing(citySearchBar)
         weatherTask?.cancel()
         
-        weatherTask = WeatherService().loadCurrentWeather(cityName: searchBar.text ?? "", completion: downloadWeather(dictionary:error:))
+        weatherTask = WeatherService().loadCurrentWeather(cityName: searchBar.text ?? "", completion: downloadWeather(weatherData:error:))
         //weatherTask.resume()
     }
     

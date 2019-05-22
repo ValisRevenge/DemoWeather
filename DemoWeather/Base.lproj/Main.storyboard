@@ -93,7 +93,7 @@
         <!--Dnipro-->
         <scene sceneID="Ydq-g8-NXL">
             <objects>
-                <viewController id="x9h-cG-WAh" customClass="WeekWeatherViewController" customModule="DemoWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="x9h-cG-WAh" customClass="ForecastViewController" customModule="DemoWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="64k-jf-ake">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

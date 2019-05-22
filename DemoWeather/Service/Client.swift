@@ -24,11 +24,11 @@ final class WebClient {
     }
     
     func load(path: String, httpMethod: RequestMethod, params: [String:Any], completion: @escaping(Any?, ServiceError?) ->()) -> URLSessionDataTask? {
-        let reach = Reachability()
-        if !reach.isReachable() {
-            completion(nil, .noInternetConnection)
-            return nil
-        }
+        //let reach = Reachability()
+//        if !reach.isReachable() {
+//            completion(nil, .noInternetConnection)
+//            return nil
+//        }
         
         let request = URLRequest(baseUrl: baseUrl, path: path, method: httpMethod, params: params)
         let task = URLSession.shared.dataTask(with: request) { data, responce, error in
