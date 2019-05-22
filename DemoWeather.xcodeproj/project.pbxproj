@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5209C95D22627975008E1FB4 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209C95C22627975008E1FB4 /* DataLoader.swift */; };
 		520ABE4D22745CB1001C20EF /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520ABE4C22745CB1001C20EF /* Forecast.swift */; };
+		520DBE2A228FF13A00303155 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DBE29228FF13A00303155 /* WeatherService.swift */; };
 		520DF9DE228AB15D007BE36C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DF9DD228AB15D007BE36C /* Client.swift */; };
 		520F22BE227225730012A6AB /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F22BD227225730012A6AB /* CurrentWeather.swift */; };
 		52109DC22289E98500D43420 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52109DC12289E98500D43420 /* ServiceError.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		5209C95C22627975008E1FB4 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		520ABE4C22745CB1001C20EF /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		520DBE29228FF13A00303155 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		520DF9DD228AB15D007BE36C /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		520F22BD227225730012A6AB /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		52109DC12289E98500D43420 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
@@ -67,6 +69,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		520DBE28228FF09E00303155 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				52109DC12289E98500D43420 /* ServiceError.swift */,
+				520DF9DD228AB15D007BE36C /* Client.swift */,
+				520DBE29228FF13A00303155 /* WeatherService.swift */,
+				5209C95C22627975008E1FB4 /* DataLoader.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		5210BEB722610D6F00EABA5D /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +114,7 @@
 				5227EAA82260C64700CE9826 /* ViewController.swift */,
 				5227EAAA2260C64700CE9826 /* Main.storyboard */,
 				5210BEB822610E6000EABA5D /* WeekWeatherViewController.swift */,
+				520DBE28228FF09E00303155 /* Service */,
 				5233F0842263B7C100F8D621 /* Model */,
 				5210BEB722610D6F00EABA5D /* TableViewCells */,
 				5227EAAD2260C64700CE9826 /* Assets.xcassets */,
@@ -113,11 +127,8 @@
 		5233F0842263B7C100F8D621 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5209C95C22627975008E1FB4 /* DataLoader.swift */,
 				520F22BD227225730012A6AB /* CurrentWeather.swift */,
 				521AAF582276E2A4009FB71A /* SkyImages.swift */,
-				52109DC12289E98500D43420 /* ServiceError.swift */,
-				520DF9DD228AB15D007BE36C /* Client.swift */,
 				520ABE4C22745CB1001C20EF /* Forecast.swift */,
 			);
 			path = Model;
@@ -253,6 +264,7 @@
 			files = (
 				5209C95D22627975008E1FB4 /* DataLoader.swift in Sources */,
 				5227EAA92260C64700CE9826 /* ViewController.swift in Sources */,
+				520DBE2A228FF13A00303155 /* WeatherService.swift in Sources */,
 				520ABE4D22745CB1001C20EF /* Forecast.swift in Sources */,
 				5210BEB922610E6000EABA5D /* WeekWeatherViewController.swift in Sources */,
 				520F22BE227225730012A6AB /* CurrentWeather.swift in Sources */,
@@ -408,7 +420,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoWeather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = byMishko.DemoWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -424,7 +439,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoWeather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = byMishko.DemoWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

@@ -32,16 +32,12 @@ final class WebClient {
         
         let request = URLRequest(baseUrl: baseUrl, path: path, method: httpMethod, params: params)
         let task = URLSession.shared.dataTask(with: request) { data, responce, error in
-            var object: Any? = nil
-            if let data = data {
-                object = try? JSONSerialization.data(withJSONObject: data, options: [])
-            }
-            
             if let httpResponce = responce as? HTTPURLResponse, (200..<300) ~= httpResponce.statusCode {
-                completion(object, nil)
+                completion(data, nil)
             }
             else {
-                let error = (object as? [String:Any]).flatMap(ServiceError.init) ?? ServiceError.other
+                let object = (try? JSONSerialization.jsonObject(with: data!, options: [])) as? [String:Any]
+                let error = object.flatMap(ServiceError.init) ?? ServiceError.other
                 completion(nil, error)
             }
             
@@ -52,6 +48,7 @@ final class WebClient {
     }
     
 }
+
 extension URL {
     init(baseUrl: String, path: String, params: [String:Any], method: RequestMethod) {
         var components = URLComponents(string: baseUrl)!
