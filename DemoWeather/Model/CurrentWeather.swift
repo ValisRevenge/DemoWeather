@@ -107,4 +107,23 @@ struct CurrentWeatherData: Decodable {
         
     }
     
+    func getDictionary() -> [String:Any] {
+        var dictionary: [String:Any] = [:]
+        dictionary["date"] = date
+        dictionary["clouds"] = clouds
+        dictionary["coord_lat"] = coordinate?.coordinate.latitude
+        dictionary["coord_lon"] = coordinate?.coordinate.longitude
+        dictionary["humidity"] = humidity
+        dictionary["icon"] = iconPath
+        dictionary["pressure"] = pressure
+        dictionary["sunrise"] = sunrise
+        dictionary["sunset"] = sunset
+        dictionary["temp"] = temp
+        dictionary["weather_description"] = description
+        dictionary["weather_main"] = type
+        dictionary["wind_deg"] = windDeg
+        dictionary["wind_speed"] = windSpeed
+        return dictionary
+    }
+    
 }

@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import CoreLocation
-
+import CoreData
 //
 class ViewController: UIViewController {
     
@@ -34,6 +34,8 @@ class ViewController: UIViewController {
     var currentWeather: CurrentWeatherData?
     
     var weatherForecast: ForecastSixDayData?
+    
+    var todayWeatherData: NSManagedObject?
     
     var location:CLLocation? {
         didSet {
@@ -73,13 +75,16 @@ class ViewController: UIViewController {
         }
         else {
             currentWeather = weatherData
-            DispatchQueue.main.async {
-                self.weatherPictureBox.image = UIImage(skyImages: .cloudy)
-                self.cityLabel.text = self.currentWeather!.nameCity
-                self.humidityLabel.text = "Humidity: " + String(self.currentWeather!.humidity) + " h"
-                self.pressureLabel.text = "Pressure: " + String(self.currentWeather!.pressure)
-                self.temperatureLabel.text = "Temp: " + String(self.currentWeather!.temp) + "'C"
-                self.windLabel.text = "Wind: " + String(self.currentWeather!.windSpeed) + " m/s " + String(self.currentWeather!.windDeg) + " deg"
+            if let currentWeather = currentWeather {
+                DispatchQueue.main.async {
+                    self.saveWeatherData(weatherData: currentWeather)
+                    self.weatherPictureBox.image = UIImage(skyImages: .cloudy)
+                    self.cityLabel.text = currentWeather.nameCity
+                    self.humidityLabel.text = "Humidity: " + String(currentWeather.humidity) + " h"
+                    self.pressureLabel.text = "Pressure: " + String(currentWeather.pressure)
+                    self.temperatureLabel.text = String(currentWeather.temp) + "'C"
+                    self.windLabel.text = "Wind: " + String(currentWeather.windSpeed) + " m/s " + String(currentWeather.windDeg) + " deg"
+                }
             }
         }
     }
@@ -90,6 +95,22 @@ class ViewController: UIViewController {
         }
         else {
             weatherForecast = forecast
+        }
+    }
+    
+    func saveWeatherData(weatherData: CurrentWeatherData) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "WeatherData", in: managedContext)!
+        
+        let storageObj = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        storageObj.setValuesForKeys(weatherData.getDictionary())
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Couldn't save(. \(error)")
         }
     }
     

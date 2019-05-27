@@ -17,6 +17,7 @@
 		5210BEB622610BB200EABA5D /* WeatherDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5210BEB422610BB200EABA5D /* WeatherDayCell.xib */; };
 		5210BEB922610E6000EABA5D /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5210BEB822610E6000EABA5D /* ForecastViewController.swift */; };
 		521AAF592276E2A4009FB71A /* SkyImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521AAF582276E2A4009FB71A /* SkyImages.swift */; };
+		5220C3EF229C41E3009879DF /* Storage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5220C3ED229C41E3009879DF /* Storage.xcdatamodeld */; };
 		5227EAA72260C64700CE9826 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5227EAA62260C64700CE9826 /* AppDelegate.swift */; };
 		5227EAA92260C64700CE9826 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5227EAA82260C64700CE9826 /* ViewController.swift */; };
 		5227EAAC2260C64700CE9826 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5227EAAA2260C64700CE9826 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		5210BEB422610BB200EABA5D /* WeatherDayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherDayCell.xib; sourceTree = "<group>"; };
 		5210BEB822610E6000EABA5D /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 		521AAF582276E2A4009FB71A /* SkyImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyImages.swift; sourceTree = "<group>"; };
+		5220C3EE229C41E3009879DF /* Storage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Storage.xcdatamodel; sourceTree = "<group>"; };
 		5227EAA32260C64700CE9826 /* DemoWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5227EAA62260C64700CE9826 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5227EAA82260C64700CE9826 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				5233F0842263B7C100F8D621 /* Model */,
 				5210BEB722610D6F00EABA5D /* TableViewCells */,
 				5227EAAD2260C64700CE9826 /* Assets.xcassets */,
+				5220C3ED229C41E3009879DF /* Storage.xcdatamodeld */,
 				5227EAAF2260C64700CE9826 /* LaunchScreen.storyboard */,
 				5227EAB22260C64700CE9826 /* Info.plist */,
 			);
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5220C3EF229C41E3009879DF /* Storage.xcdatamodeld in Sources */,
 				5209C95D22627975008E1FB4 /* DataLoader.swift in Sources */,
 				5227EAA92260C64700CE9826 /* ViewController.swift in Sources */,
 				520DBE2A228FF13A00303155 /* WeatherService.swift in Sources */,
@@ -472,6 +476,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5220C3ED229C41E3009879DF /* Storage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5220C3EE229C41E3009879DF /* Storage.xcdatamodel */,
+			);
+			currentVersion = 5220C3EE229C41E3009879DF /* Storage.xcdatamodel */;
+			path = Storage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5227EA9B2260C64700CE9826 /* Project object */;
 }
